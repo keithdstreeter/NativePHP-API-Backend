@@ -12,12 +12,16 @@ Route::prefix('v1')->group(function (): void {
     Route::prefix('auth')->group(function (): void {
         Route::post('register', [AuthController::class, 'register'])->name('api.v1.auth.register');
         Route::post('login', [AuthController::class, 'login'])->name('api.v1.auth.login');
+
+        Route::get('cuesheets', [CuesheetController::class, 'index'])->name('api.v1.cuesheets.index');
+        Route::get('registrations', [RegistrationController::class, 'index'])->name('api.v1.registrations.index');
+
         Route::middleware('auth:sanctum')->group(function (): void {
             Route::get('me', [AuthController::class, 'me'])->name('api.v1.auth.me');
             Route::post('avatar', [ProfileAvatarController::class, 'store'])->name('api.v1.profile.avatar.store');
             Route::post('logout', [AuthController::class, 'logout'])->name('api.v1.auth.logout');
-            Route::get('cuesheets', [CuesheetController::class, 'index'])->name('api.v1.cuesheets.index');
-            Route::get('registrations', [RegistrationController::class, 'index'])->name('api.v1.registrations.index');
+            // Route::get('cuesheets', [CuesheetController::class, 'index'])->name('api.v1.cuesheets.index');
+            // Route::get('registrations', [RegistrationController::class, 'index'])->name('api.v1.registrations.index');
         });
 
         Route::prefix('google')->group(function (): void {
