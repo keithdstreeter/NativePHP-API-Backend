@@ -9,20 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('avatar_path')->nullable()->after('avatar');
-        });
-    }
+    // public function up(): void
+    // {
+    //     Schema::table('users', function (Blueprint $table) {
+    //         $table->string('avatar_path')->nullable()->after('avatar');
+    //     });
+    // }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('avatar_path');
-        });
-    }
+    // public function down(): void
+    // {
+    //     Schema::table('users', function (Blueprint $table) {
+    //         $table->dropColumn('avatar_path');
+    //     });
+    // }
 };
