@@ -13,5 +13,7 @@ class Cuesheet extends Model
         'turn',
         'notes',
         'distance',
+        'ride',
+        'completed',
     ];
 }

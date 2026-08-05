@@ -12,8 +12,9 @@ class RegistrationController extends Controller
     {
         $registrations = Registration::query()
             ->orderBy('id')
-            ->get();
+            ->get(['id', 'bib', 'first_name', 'last_name', 'phone', 'category_entered', 'email', 'dob', 'gender', 'created_at', 'updated_at']);
 
         return response()->json($registrations);
+
     }
 }

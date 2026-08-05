@@ -10,7 +10,13 @@ class Registration extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'bib',
+        'first_name',
+        'last_name',
         'email',
+        'phone',
+        'category_entered',
+        'dob',
+        'gender',
     ];
 }

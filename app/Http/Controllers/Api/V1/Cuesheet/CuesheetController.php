@@ -12,8 +12,10 @@ class CuesheetController extends Controller
     {
         $cuesheets = Cuesheet::query()
             ->orderBy('id')
-            ->get(['id', 'turn', 'notes', 'distance', 'created_at', 'updated_at']);
+            ->get(['id', 'turn', 'notes', 'distance', 'ride', 'completed', 'created_at', 'updated_at']);
+
 
         return response()->json($cuesheets);
+
     }
 }
