@@ -10,10 +10,16 @@ class Notification extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'DateSent',
-        'Message',
+        'date_sent',
+        'message',
+        'first_name',
+        'last_name',
+        'bib',
+        'ride_short_name',
     ];
 
+
+   
     /**
      * Get the attributes that should be cast.
      *
@@ -22,7 +28,7 @@ class Notification extends Model
     protected function casts(): array
     {
         return [
-            'DateSent' => 'datetime',
+            'date_sent' => 'datetime',
         ];
     }
 }
