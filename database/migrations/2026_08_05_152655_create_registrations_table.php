@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('category_entered');
-            $table->date('dob');
-            $table->string('gender');
+            $table->string('bib', 10)->nullable();
+            $table->string('first_name', 100)->nullable();
+            $table->string('last_name', 100)->nullable();
+            $table->string('phone', 15)->nullable();
+            $table->string('category_entered', 10)->nullable();
+            $table->string('email', 10)->nullable();
+            $table->string('dob', 15)->nullable();
+            $table->string('gender', 10)->nullable();
             $table->timestamps();
         });
     }

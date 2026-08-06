@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('cuesheets', function (Blueprint $table) {
             $table->id();
-			$table->string('turn', 30);
-			$table->string('notes', 200);
-			$table->float('distance', 8, 1);
+            $table->string('ride', 10)->nullable();
+			$table->string('turn', 30)->nullable();
+			$table->string('notes', 200)->nullable();
+			$table->float('distance', 8, 1)->nullable();
+            $table->integer('completed')->nullable();
             $table->timestamps();
         });
     }
