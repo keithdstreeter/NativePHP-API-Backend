@@ -12,7 +12,9 @@ class NotificationController extends Controller
 {
     public function store(StoreNotificationRequest $request): JsonResponse
     {
-        Log::info('Storing notification', ['request' => $request->validated()]);
+        //Log::info('Storing notification', ['request' => $request->validated()]);
+
+        Log::info('Storing notification', ['request' => $request->all()]);
 
         // $notification = Notification::query()->create($request->validated());
 
@@ -38,7 +40,7 @@ class NotificationController extends Controller
 
         // Create each cuesheet entry in the database
         //   Cuesheet::create($newCuesheetEntry); 
-        
+
         return response()->json($notification, 201);
     }
 }
