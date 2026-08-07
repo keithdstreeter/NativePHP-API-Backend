@@ -23,10 +23,10 @@ class NotificationController extends Controller
 
         $notification = Notification::create([
             'message' => $request->Message,
-            // 'first_name' => $request->first_name,
-            // 'last_name' => $request->last_name,
-            // 'bib' => $request->bib,
-            // 'ride_short_name' => $request->ride_short_name,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'bib' => $request->bib,
+            'ride_short_name' => $request->ride_short_name,
             'date_sent' => $request->DateSent,
         ]);
 
