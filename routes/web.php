@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotificationListController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,3 +10,5 @@ Route::get('/', function () {
 Route::get('/welcome2', function () {
     return view('welcome2');
 });
+
+Route::get('/notificationlist', NotificationListController::class)->name('notificationlist');
