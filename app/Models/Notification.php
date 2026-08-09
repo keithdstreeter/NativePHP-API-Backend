@@ -18,7 +18,6 @@ class Notification extends Model
         'ride_short_name',
     ];
 
-
    
     /**
      * Get the attributes that should be cast.
