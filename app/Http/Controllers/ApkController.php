@@ -13,7 +13,7 @@ class ApkController extends Controller
 
     private const string APK_FILE_NAME = 'D2R2-2026.apk';
 
-    private const string APK_FILE_PATH = 'apks/D2R2-2026.apk';
+    private const string APK_FILE_PATH = 'private/D2R2-2026.apk';
 
     public function showDownloadPage(): View
     {
@@ -28,8 +28,8 @@ class ApkController extends Controller
         $absolutePath = $apkDisk->path(self::APK_FILE_PATH);
         $sha256 = hash_file('sha256', $absolutePath);
 
-        return view('apk.download', [
-            'downloadUrl' => route('apk.download'),
+        return view('download', [
+            //'downloadUrl' => route('apk.download'),
             'downloadFileName' => self::APK_FILE_NAME,
             'fileSize' => $fileSize,
             'lastModified' => $lastModified,
@@ -41,17 +41,17 @@ class ApkController extends Controller
     {
         $apkDisk = $this->apkDisk();
 
-        if (! $apkDisk->exists(self::APK_FILE_PATH)) {
-            abort(404, 'APK file not found.');
-        }
+        // if (! $apkDisk->exists(self::APK_FILE_PATH)) {
+        //     abort(404, 'APK file not found.');
+        // }
 
-        return $apkDisk->download(self::APK_FILE_PATH, self::APK_FILE_NAME, [
-            'Content-Type' => 'application/vnd.android.package-archive',
-        ]);
+        // return $apkDisk->download(self::APK_FILE_PATH, self::APK_FILE_NAME, [
+        //     'Content-Type' => 'application/vnd.android.package-archive',
+        // ]);
     }
 
     private function apkDisk(): FilesystemAdapter
     {
-        return Storage::disk(self::APK_DISK);
+        //return Storage::disk(self::APK_DISK);
     }
 }

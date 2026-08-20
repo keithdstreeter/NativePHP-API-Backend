@@ -13,8 +13,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/welcome2', function () {
+Route::get('/getapk', function () {
     return view('welcome2');
 });
 
 Route::get('/notificationlist', NotificationListController::class)->name('notificationlist');
+
+//Route::get('/getapk', ApkController::class)->name('showDownloadPage');
