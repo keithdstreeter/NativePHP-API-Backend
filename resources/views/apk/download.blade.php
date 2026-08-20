@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download Android APK</title>
-    <script src="https://tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
@@ -16,7 +16,8 @@
         <p class="text-sm text-gray-500 mb-6">Official Direct APK Download</p>
 
         <!-- Download Button -->
-        <a href="{{ route('apk.download') }}"
+        <a href="{{ $downloadUrl }}"
+            download="{{ $downloadFileName }}"
             class="inline-block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 shadow mb-6">
             Download APK File
         </a>
