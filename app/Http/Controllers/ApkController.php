@@ -2,45 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ApkController extends Controller
 {
-    // Define file details in one place
-    private string $fileName = 'D2R2-2026.apk';
-    private string $filePath = 'apks/D2R2-2026.apk'; // Points to storage/app/apks/D2R2-2026.apk
+    private const string APK_DISK = 'local';
 
-    public function showDownloadPage()
+    private const string APK_FILE_NAME = 'D2R2-2026.apk';
+
+    private const string APK_FILE_PATH = 'apks/D2R2-2026.apk';
+
+    public function showDownloadPage(): View
     {
-        // 1. Check if the file actually exists in storage
-        if (!Storage::exists($this->filePath)) {
+        $apkDisk = $this->apkDisk();
+
+        if (! $apkDisk->exists(self::APK_FILE_PATH)) {
             abort(404, 'APK file not found.');
         }
 
-        // 2. Gather file metadata for the view
-        $fileSize = round(Storage::size($this->filePath) / 1024 / 1024, 2); // Convert to MB
-        $lastModified = date('Y-m-d', Storage::lastModified($this->filePath));
-        
-        // 3. Generate SHA-256 hash so users can verify file integrity
-        $absolutePath = Storage::path($this->filePath);
+        $fileSize = round($apkDisk->size(self::APK_FILE_PATH) / 1024 / 1024, 2);
+        $lastModified = date('Y-m-d', $apkDisk->lastModified(self::APK_FILE_PATH));
+        $absolutePath = $apkDisk->path(self::APK_FILE_PATH);
         $sha256 = hash_file('sha256', $absolutePath);
 
-        return view('apk.download', compact('fileSize', 'lastModified', 'sha256'));
+        return view('apk.download', [
+            'downloadUrl' => route('apk.download'),
+            'downloadFileName' => self::APK_FILE_NAME,
+            'fileSize' => $fileSize,
+            'lastModified' => $lastModified,
+            'sha256' => $sha256,
+        ]);
     }
 
-    public function downloadApk(): BinaryFileResponse
+    public function downloadApk(): StreamedResponse
     {
-        if (!Storage::exists($this->filePath)) {
-            abort(404);
+        $apkDisk = $this->apkDisk();
+
+        if (! $apkDisk->exists(self::APK_FILE_PATH)) {
+            abort(404, 'APK file not found.');
         }
 
-        // Optional: Add code here to log download counts to a database
-
-        // Force browser download with correct Android MIME type
-        return Storage::download($this->filePath, $this->fileName, [
+        return $apkDisk->download(self::APK_FILE_PATH, self::APK_FILE_NAME, [
             'Content-Type' => 'application/vnd.android.package-archive',
         ]);
+    }
+
+    private function apkDisk(): FilesystemAdapter
+    {
+        return Storage::disk(self::APK_DISK);
     }
 }
