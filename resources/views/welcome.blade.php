@@ -27,7 +27,7 @@
         <p class="text-sm text-gray-500 mb-6">Official Direct APK Download</p>
 
         <!-- Download Button -->
-        <a href="images/" download="D2R2-2026.apk"
+        <a href="images/D2R2-2026.apk" download="D2R2-2026.apk"
             class="inline-block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 shadow mb-6">
             Download APK File
         </a>
